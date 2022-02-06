@@ -3,9 +3,9 @@ package com.silvasistemas.repositories;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
-import com.silvasistemas.domain.Categoria;
+import com.silvasistemas.domain.Cliente;
 
 @Repository
-public interface CategoriaRepository extends JpaRepository<Categoria, Integer>{
+public interface ClienteRepository extends JpaRepository<Cliente, Integer>{
 
 }
