@@ -8,8 +8,12 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 import com.silvasistemas.domain.Categoria;
+import com.silvasistemas.domain.Cidade;
+import com.silvasistemas.domain.Estado;
 import com.silvasistemas.domain.Produto;
 import com.silvasistemas.repositories.CategoriaRepository;
+import com.silvasistemas.repositories.CidadeRepository;
+import com.silvasistemas.repositories.EstadoRepository;
 import com.silvasistemas.repositories.ProdutoRepository;
 
 @SpringBootApplication
@@ -20,6 +24,13 @@ public class CursoModelagemUmlApplication implements CommandLineRunner{
 	
 	@Autowired
 	private ProdutoRepository produtoRepository;
+	
+	@Autowired
+	private EstadoRepository estadoRepository;
+	
+	@Autowired
+	private CidadeRepository cidadeRepository;
+	
 	
 	public static void main(String[] args) {
 		SpringApplication.run(CursoModelagemUmlApplication.class, args);
@@ -44,6 +55,24 @@ public class CursoModelagemUmlApplication implements CommandLineRunner{
 		
 		categoriaRepository.saveAll(Arrays.asList(cat1, cat2));
 		produtoRepository.saveAll(Arrays.asList(p1,p2,p3));
+		
+		
+		// Instnacias de Estado e Cidades
+		
+		Estado est1 = new Estado(null, "Minas Gerais");
+		Estado est2 = new Estado(null, "São Paulo");
+		
+		Cidade c1 = new Cidade(null, "Uberlândia", est1);
+		Cidade c2 = new Cidade(null, "São Paulo", est2);
+		Cidade c3 = new Cidade(null, "Camplinas", est2);
+		
+		est1.getCidades().addAll(Arrays.asList(c1));
+		est2.getCidades().addAll(Arrays.asList(c2, c3));
+		
+		
+		estadoRepository.saveAll(Arrays.asList(est1, est2));
+		cidadeRepository.saveAll(Arrays.asList(c1, c2, c3));
+		
 	}
 
 }
